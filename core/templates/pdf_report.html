@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Analysis Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        body { 
+            font-family: Helvetica, sans-serif; 
+            font-size: 14px; 
+            color: #333333; 
+        }
+        h1 { 
+            color: #2c3e50; 
+            text-align: center; 
+            margin-bottom: 30px;
+        }
+        h2 { 
+            color: #34495e; 
+            border-bottom: 1px solid #bdc3c7; 
+            padding-bottom: 5px; 
+            margin-top: 30px;
+        }
+        .metric { 
+            margin-bottom: 12px; 
+        }
+        .metric-label { 
+            font-weight: bold; 
+            width: 250px; 
+            display: inline-block; 
+        }
+        .recommendations { 
+            background-color: #f8f9fa; 
+            padding: 15px; 
+            margin-top: 15px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li { 
+            margin-bottom: 10px; 
+            line-height: 1.5;
+        }
+        .footer {
+            text-align: center;
+            font-size: 10px;
+            color: #7f8c8d;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Business Analysis Report</h1>
+
+    <h2>Executive Summary</h2>
+    <div class="metric">
+        <span class="metric-label">Total Value:</span> 
+        ${{ report.summary.total_value }}
+    </div>
+    <div class="metric">
+        <span class="metric-label">Number of Records:</span> 
+        {{ report.summary.records_number }}
+    </div>
+    
+    {% if report.summary.avg_monthly_growth %}
+    <div class="metric">
+        <span class="metric-label">Avg. Monthly Growth:</span> 
+        {{ report.summary.avg_monthly_growth }}%
+    </div>
+    {% endif %}
+
+    {% if report.summary.top_category %}
+    <div class="metric">
+        <span class="metric-label">Top Category:</span> 
+        {{ report.summary.top_category }} ({{ report.summary.top_category_proportion }}% of total)
+    </div>
+    {% endif %}
+
+    <h2>Strategic Recommendations</h2>
+    <div class="recommendations">
+        <ul>
+            {% for rec in report.recommendation %}
+                <li>{{ rec }}</li>
+            {% empty %}
+                <li>No specific recommendations at this time.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

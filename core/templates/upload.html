@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Data File</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; background-color: #f4f7f6; color: #333; }
+        .card { background-color: white; border: 1px solid #ccc; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .btn { display: inline-block; padding: 12px 24px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 15px; }
+        .btn:hover { background: #0056b3; }
+        input[type="file"] { margin: 20px 0; display: block; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Upload Sales CSV File</h1>
+        <p>Upload data from your system so the analytics engine can generate business recommendations.</p>
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="csv_file" accept=".csv" required>
+            <button type="submit" class="btn">Proceed to Mapping</button>
+        </form>
+    </div>
+</body>
+</html>

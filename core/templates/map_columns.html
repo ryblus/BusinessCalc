@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Map Columns</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; background-color: #f4f7f6; color: #333; }
+        .card { background-color: white; border: 1px solid #ccc; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .btn { display: inline-block; padding: 12px 24px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 25px; width: 100%; }
+        .btn:hover { background: #218838; }
+        .form-group { margin-bottom: 20px; }
+        label { font-weight: bold; display: block; margin-bottom: 8px; color: #444; }
+        select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 15px; box-sizing: border-box; }
+        .errorlist { color: #dc3545; list-style: none; padding: 0; margin-top: 5px; font-size: 14px; }
+        .alert-error { background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Map File Columns</h1>
+        <p>Assign the columns from your file to the variables the system will use for econometric calculations.</p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <!-- General error handling (e.g., empty file returned by pandas) -->
+            {% if form.non_field_errors %}
+                <div class="alert-error">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <!-- Generating individual select fields -->
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <ul class="errorlist">
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn">Run Data Analysis</button>
+        </form>
+    </div>
+</body>
+</html>

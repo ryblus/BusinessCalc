@@ -13,6 +13,10 @@ BusinessCalc is a Django-based web application designed for automated econometri
 * **Strategic Recommendations:** Context-aware business advice generated based on calculated financial metrics.
 * **PDF Export:** One-click generation and download of a clean, professional PDF report using `xhtml2pdf`.
 
+<img width="1854" height="940" alt="main" src="https://github.com/user-attachments/assets/c8c74037-0f35-4f96-b79d-4f58c0125921" />
+<img width="1856" height="939" alt="mapping" src="https://github.com/user-attachments/assets/3965ffd1-83b2-49ef-95ef-4c97c2a9b1ca" />
+<img width="1847" height="931" alt="report" src="https://github.com/user-attachments/assets/e5b33a22-b4fc-4a5a-b3f7-55a5fd32a59b" />
+
 ## Tech Stack 🛠️
 * **Backend:** Python 3, Django
 * **Data Processing:** Pandas, NumPy
